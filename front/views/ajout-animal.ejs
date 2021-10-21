@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<%- include('./layouts/head.ejs') %>
+
+	<body>
+		<!-- Navigation-->
+		<%- include('./layouts/nav.ejs') %>
+			<!-- Header-->
+			<%- include('./layouts/header.ejs') %>
+				<main>
+					<!-- Section-->
+					<div class="container">
+
+						<!-- Page Heading -->
+						<h2 class="h1 my-4">Ajouter un animal</h2>
+
+						<div class="row">
+
+							<form action="/api/animal/new" method="POST">
+
+								<!-- TODO input photo and add multer -->
+
+								<!-- name Input -->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="name" type="text" placeholder="name" name="name" required />
+									<label for="name">Name</label>
+								</div>
+
+								<!-- sex Input -->
+								<div class="form-floating">
+									<select class="form-select mb-3" id="sex" aria-label="select sex" name="sex" required>
+										<option selected>Inconnu</option>
+										<option value="male">Male</option>
+										<option value="femelle">Femelle</option>
+									</select>
+									<label for="sex">sex</label>
+								</div>
+
+								<!-- type Input -->
+								<div class="form-floating">
+									<select class="form-select mb-3" id="type" aria-label="select type" name="type" required>
+										<option selected>Inconnu</option>
+										<option value="chien">Chien</option>
+										<option value="chat">Chat</option>
+										<option value="autre">Autre</option>
+									</select>
+									<label for="type">type</label>
+								</div>
+
+								<!-- content Input -->
+								<div class="form-floating mb-3">
+									<textarea class="form-control" id="content" rows="3"
+										placeholder="Petit text de présentation"></textarea>
+									<label for="content" class="form-label">Petit text de présentation</label>
+								</div>
+
+								<!-- castrated Input -->
+								<div class="form-floating">
+									<select class="form-select mb-3" id="castrated" aria-label="select castrated"
+										name="castrated" required>
+										<option selected value="false">Non</option>
+										<option value="true">Oui</option>
+									</select>
+									<label for="castrated">castré</label>
+								</div>
+
+								<!-- puce number input-->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="puceNumber" type="text" placeholder="puceNumber"
+										name="puceNumber" required />
+									<label for="puceNumber">Numéro de puce</label>
+								</div>
+
+								<!-- birthday input-->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="birthday" type="date" placeholder="birthday"
+										name="birthday" />
+									<label for="birthday">Anniversaire</label>
+								</div>
+
+								<!-- Submit button -->
+								<div class="d-grid">
+									<button class="btn btn-primary btn-lg mt-3 mb-5" id="submitButton"
+										type="submit">Soumettre</button>
+								</div>
+							</form>
+							<!-- End of connect form -->
+						</div>
+
+
+					</div>
+					<!-- /.row -->
+
+					</div>
+					<!-- /.container -->
+
+				</main>
+				<!-- Footer-->
+				<%- include('./layouts/footer.ejs') %>
+					<%- include('./layouts/scripts.ejs') %>
+	</body>
+
+</html>

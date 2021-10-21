@@ -2,10 +2,7 @@ const express = require('express');
 const UserToken = require('../../session/token');
 const jwt = require('jsonwebtoken')
 const router = express.Router();
-
-// TODO clean, userToken test
-// UserToken.setToken("Haloa")
-// console.log(UserToken.getToken());
+const authAdmin = require('../../middlewares/authAdmin');
 
 
 
@@ -33,8 +30,8 @@ router.get('/animaux', (req, res) => {
 	res.render('animaux', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
 })
 
-router.get('/admin/ajout-animaux', (req, res) => {
-	res.render('ajout-animaux', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
+router.get('/admin/ajout-animal', authAdmin, (req, res) => {
+	res.render('ajout-animal', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
 })
 
 module.exports = router

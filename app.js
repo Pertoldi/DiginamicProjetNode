@@ -4,6 +4,8 @@ const helmet = require('helmet')
 
 const frontRoutes = require('./front/routes/routes')
 const userRoutes = require('./back/routes/user')
+const animalRoutes = require('./back/routes/animal')
+
 
 //Note: As long as it not an http server I will store my token on a class. Because I cannot store it on localStorage, then on the Authorisation: Bearer <token>
 const UserToken = require('./session/token')
@@ -46,6 +48,7 @@ mongoose.connect(`mongodb://localhost:27017/LaPetiteNiche?readPreference=primary
 
 app.use('/', frontRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/animal', animalRoutes)
 
 
 app.get('*', function (req, res) {

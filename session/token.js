@@ -11,4 +11,4 @@ class UserToken {
 
 module.exports = UserToken
 
-// Note: I could use private variable and getter/setter,but i'm not comfortable with them, i needed nore time
+// Note: I could use private variable and getter/setter,but i'm not comfortable with them, i needed more time
