@@ -8,33 +8,33 @@ const router = express.Router();
 // console.log(UserToken.getToken());
 
 
-let token = UserToken.getToken()
-console.log('token is :', token)
-let isAdmin = false
+
 
 function fnIsAdmin() {
+	let token = UserToken.getToken()
+	let isAdmin = false
 	if (!!token) {
 		const decodedToken = jwt.verify(token, `${process.env.TOKEN_SECRET}`);
 		isAdmin = decodedToken.isAdmin;
-	} else {
-		isAdmin = false
-	}	
+	}
+	return isAdmin
+
 }
 
 router.get('/', (req, res) => {
-	 fnIsAdmin()
-	 console.log(isAdmin);
-	res.render('index', { userToken: UserToken.getToken(), isAdmin: isAdmin })
+	res.render('index', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
 })
 
 router.get('/connect', (req, res) => {
-	 fnIsAdmin()
-	res.render('connect',  { userToken: UserToken.getToken(), isAdmin  })
+	res.render('connect', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
 })
 
 router.get('/animaux', (req, res) => {
-	 fnIsAdmin()
-	res.render('animaux',  { userToken: UserToken.getToken(), isAdmin  })
+	res.render('animaux', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
+})
+
+router.get('/admin/ajout-animaux', (req, res) => {
+	res.render('ajout-animaux', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
 })
 
 module.exports = router

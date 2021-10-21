@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<%- include('./layouts/head.ejs') %>
+
+	<body>
+		<!-- Navigation-->
+		<%- include('./layouts/nav.ejs') %>
+			<!-- Header-->
+			<%- include('./layouts/header.ejs') %>
+				<main>
+					<!-- Section-->
+					<div class="container">
+
+						<!-- Page Heading -->
+						<h2 class="h1 my-4">Se connecter</h2>
+
+						<div class="row">
+
+							<form action="/api/user/connect" method="POST">
+
+
+								<!-- email Input -->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="email-connect" type="email" placeholder="email"
+										name="email" />
+									<label for="email-connect">email</label>
+								</div>
+
+								<!-- password Input -->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="password-connect" type="password" placeholder="Mot de passe"
+										name="password" />
+									<label for="password-connect">Mot de passe</label>
+								</div>
+
+								<!-- Submit button -->
+								<div class="d-grid">
+									<button class="btn btn-primary btn-lg mb-5" id="submitButton" type="submit">Submit</button>
+								</div>
+							</form>
+							<!-- End of connect form -->
+						</div>
+
+
+					</div>
+					<!-- /.row -->
+
+					</div>
+					<!-- /.container -->
+
+				</main>
+				<!-- Footer-->
+				<%- include('./layouts/footer.ejs') %>
+					<%- include('./layouts/scripts.ejs') %>
+	</body>
+
+</html>
