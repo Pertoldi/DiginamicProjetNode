@@ -1,11 +1,9 @@
 const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
+const UserToken = require('../../session/token');
+
 
 const User = require('../models/user');
-
-exports.connect = (req, res) => {
-
-}
 
 exports.create = async (req, res) => {
 	const firstName = req.body.firstName
@@ -44,16 +42,22 @@ exports.connect = async (req, res) => {
 	//simple form control
 	if (email && password) {
 		const user = await User.findOne({ email: req.body.email })
-		if (!user) return console.log('User not find !');//Utilisateur non trouvé
 		isGoodPassword = await bcrypt.compare(req.body.password, user.password)
-		if (!isGoodPassword) return console.log('Password incorect !');
-		res.status(200).json({
-			userId: user._id,
-			token: jwt.sign(
-				{ userId: user._id },
+		//User not find or wrong password
+		if (!user || !isGoodPassword) res.redirect('/connect')
+		else {
+			let userToken = jwt.sign(
+				{ userId: user._id, isAdmin: user.isAdmin },
 				`${process.env.TOKEN_SECRET}`,
-				{ expiresIn: '6h' }
-			)
-		});
+				{ expiresIn: '6h' })
+				UserToken.setToken(userToken)
+			console.log(UserToken.getToken());
+				res.redirect('/')
+		}
 	}
+}
+
+exports.disconnect = (req, res) => {
+	UserToken.setToken("")
+	res.redirect('/')
 }

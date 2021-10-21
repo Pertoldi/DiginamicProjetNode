@@ -1,25 +1,28 @@
 const express = require('express')
-const mongoose = require('mongoose');
-const helmet = require('helmet');
+const mongoose = require('mongoose')
+const helmet = require('helmet')
 
 const frontRoutes = require('./front/routes/routes')
 const userRoutes = require('./back/routes/user')
 
+//Note: As long as it not an http server I will store my token on a class. Because I cannot store it on localStorage, then on the Authorisation: Bearer <token>
+const UserToken = require('./session/token')
+
 // Init app
-const app = express();
+const app = express()
 // revoie un port valide sous forme de numéro ou chaine
 const normalizePort = val => {
-	const port = parseInt(val, 10);
+	const port = parseInt(val, 10)
 
 	if (isNaN(port)) {
-		return val;
+		return val
 	}
 	if (port >= 0) {
-		return port;
+		return port
 	}
-	return false;
-};
-const port = normalizePort(process.env.PORT || '3000');
+	return false
+}
+const port = normalizePort(process.env.PORT || '3000')
 
 // Security
 app.use(helmet())
@@ -37,14 +40,20 @@ app.use(express.urlencoded({ extended: true }))
 
 // Connexion a mongoDB
 mongoose.connect(`mongodb://localhost:27017/LaPetiteNiche?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`, { useNewUrlParser: true })
-.then(() => console.log('Connexion à MongoDB réussie !'))
-.catch(() => console.log('Connexion à MongoDB échouée !'));
+	.then(() => console.log('Connexion à MongoDB réussie !'))
+	.catch(() => console.log('Connexion à MongoDB échouée !'))
 
 
-app.use('/' , frontRoutes)
+app.use('/', frontRoutes)
 app.use('/api/user', userRoutes)
 
 
+app.get('*', function (req, res) {
+	res.redirect('/')
+})
+
+
+
 app.listen(port, () => {
-	console.log(`App Express listening on http://localhost:${port}`);
+	console.log(`App Express listening on http://localhost:${port}`)
 })
