@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<%- include('./layouts/head.ejs') %>
+
+	<body>
+		<!-- Navigation-->
+		<%- include('./layouts/nav.ejs') %>
+			<!-- Header-->
+			<%- include('./layouts/header.ejs') %>
+				<main>
+					<!-- Section-->
+					<div class="container">
+
+						<!-- Page Heading -->
+						<h2 class="h1 my-4">Se connecter</h2>
+
+						<div class="row">
+
+							<form action="/api/user/connect" method="POST">
+
+
+								<!-- email Input -->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="email-connect" type="email" placeholder="email"
+										name="email" />
+									<label for="email-connect">email</label>
+								</div>
+
+								<!-- password Input -->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="password-connect" type="password" placeholder="Mot de passe"
+										name="password" />
+									<label for="password-connect">Mot de passe</label>
+								</div>
+
+								<!-- Submit button -->
+								<div class="d-grid">
+									<button class="btn btn-primary btn-lg mb-5" id="submitButton" type="submit">Submit</button>
+								</div>
+							</form>
+							<!-- End of connect form -->
+						</div>
+
+						<!-- -------------------------------------------------------------------------------------------------------- -->
+
+						<div class="row">
+
+							<span>Si vous n'avez pas encore de compte, nous vous invitons à en créer un dans la section juste
+								en
+								dessous.</span>
+							<h2 class="h1 my-4">Créer un compte</h2>
+
+							<form action="/api/user/create" method="POST">
+
+								<!-- firstName Input -->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="firstName" type="text" placeholder="firstName"
+										name="firstName" required />
+									<label for="firstName">Prénom</label>
+									<div class="valid-feedback">
+										Looks good!
+									 </div>
+								</div>
+
+								<!-- lastName Input -->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="lastName" type="text" placeholder="lastName" name="lastName"
+										required />
+									<label for="lastName">Nom</label>
+								</div>
+
+								<!-- email Input -->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="emailAddress" type="email" placeholder="email" name="email"
+										required />
+									<label for="emailAddress">email</label>
+								</div>
+
+								<!-- password Input -->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="password" type="password" placeholder="Mot de passe"
+										name="password" required />
+									<label for="password">Mot de passe</label>
+								</div>
+
+								<!-- check password Input -->
+								<div class="form-floating mb-3">
+									<input class="form-control" id="check-password" type="password" placeholder="Valider le mot de passe"
+										name="password" required />
+									<label for="check-password">Valider le mot de passe</label>
+								</div>
+
+								<!-- Submit button -->
+								<div class="d-grid">
+									<button class="btn btn-primary btn-lg mb-5" id="submitButton" type="submit">Submit</button>
+								</div>
+							</form>
+							<!-- End of contact form -->
+
+						</div>
+						<!-- /.row -->
+
+					</div>
+					<!-- /.container -->
+
+				</main>
+				<!-- Footer-->
+				<%- include('./layouts/footer.ejs') %>
+					<%- include('./layouts/scripts.ejs') %>
+	</body>
+
+</html>

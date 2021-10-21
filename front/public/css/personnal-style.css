@@ -1,0 +1,15 @@
+.img_nos-actions {
+	width: 250px;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+/* Pour reprendre le flux */
+.img_nos-actions::after {
+	clear: both;
+}
+
+main {
+	min-height: calc(100vh - 480px);
+}

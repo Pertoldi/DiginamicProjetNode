@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 
 const frontRoutes = require('./front/routes/routes')
+const userRoutes = require('./back/routes/user')
 
 // Init app
 const app = express();
@@ -35,12 +36,13 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Connexion a mongoDB
-mongoose.connect(`mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`, { useNewUrlParser: true })
+mongoose.connect(`mongodb://localhost:27017/LaPetiteNiche?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`, { useNewUrlParser: true })
 .then(() => console.log('Connexion à MongoDB réussie !'))
 .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
 app.use('/' , frontRoutes)
+app.use('/api/user', userRoutes)
 
 
 app.listen(port, () => {
