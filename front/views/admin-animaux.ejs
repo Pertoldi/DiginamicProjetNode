@@ -28,7 +28,7 @@
 												<%= animals[i].name %>
 											</h4>
 
-											<p class="card-text">
+											<p class="card-text card-text-modify">
 												<%= animals[i].content %>
 											</p>
 											<hr>
@@ -55,7 +55,7 @@
 												<button class="btn btn-danger"><a class="text-decoration-none text-light"
 														href="/api/animal/delete/<%= animals[i]._id %>">Supprimer</a></button>
 												<button class="btn btn-success"><a class="text-decoration-none text-light"
-														href="/admin/modifier-animal">Modifier</a></button>
+														href="/admin/modifier-animal/<%= animals[i]._id %> ">Modifier</a></button>
 											</div>
 										</div>
 									</div>

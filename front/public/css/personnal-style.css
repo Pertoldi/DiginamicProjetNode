@@ -18,3 +18,17 @@ main {
 	height: 250px;
 	object-fit: cover;
 }
+
+textarea {
+	height: auto !important;
+}
+
+/* Thoses rules are used to align hr on cards */
+.card-body {
+	display: flex;
+	flex-direction: column;
+}
+
+.card-text {
+	flex-grow: 1;
+}

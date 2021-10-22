@@ -13,11 +13,50 @@
 					<div class="container">
 
 						<!-- Page Heading -->
-						<h2 class="h1 my-4">Ajouter un animal</h2>
+						<h2 class="h1 my-4">Modifier l'animal</h2>
 
 						<div class="row">
+							<!-- Card of the animal -->
+							<div class="col-lg-4 col-sm-6 mb-4">
+								<div class="card h-100">
+									<img class="card-img-top" src="<%= animal.imageUrl %> " alt="">
 
-							<form enctype="multipart/form-data" action="/api/animal/new" method="POST">
+									<div class="card-body">
+										<h4 class="card-title">
+											<%= animal.name %>
+										</h4>
+
+										<p class="card-text">
+											<%= animal.content %>
+										</p>
+										<hr>
+										<div class="row mb-1">
+											<div class="col-6">
+												<span>Sexe: <%= animal.sex %> </span>
+											</div>
+											<div class="col-6 text-center">
+												<span>
+													<% if (animal.sterilized) { %>
+														stérilisé(e)
+														<% } %>
+												</span>
+											</div>
+										</div>
+										<div class="row mb-1">
+											<span>Anniversaire: <%= animal.birthday.split('-')[2] %>-<%= animal.birthday.split('-')[1] %>-<%= animal.birthday.split('-')[0] %></span>
+										</div>
+										<div class="row mb-3">
+											<span>Numéro de puce: <%= animal.puceNumber %> </span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<!-- Form to modify the animal -->
+							<form enctype="multipart/form-data" action="/api/animal/update/<%= animal._id %>" method="POST">
 
 								<!-- File Input -->
 								<div class="form-group mb-3">
@@ -28,16 +67,27 @@
 
 								<!-- name Input -->
 								<div class="form-floating mb-3">
-									<input class="form-control" id="name" type="text" placeholder="name" name="name" required />
+									<input class="form-control" id="name" type="text" placeholder="name" name="name" required
+										value="<%= animal.name %> " />
 									<label for="name">Nom</label>
 								</div>
 
 								<!-- sex Input -->
 								<div class="form-floating">
 									<select class="form-select mb-3" id="sex" aria-label="select sex" name="sex" required>
-										<option selected>Inconnu</option>
-										<option value="male">Male</option>
-										<option value="femelle">Femelle</option>
+										<% if (animal.sex == 'male') { %>
+											<option >Inconnu</option>
+											<option value="male" selected>Male</option>
+											<option value="femelle">Femelle</option>
+										<% } else if ((animal.sex == 'female')) { %>
+											<option >Inconnu</option>
+											<option value="male" >Male</option>
+											<option value="femelle" selected>Femelle</option>
+										<% } else { %>
+											<option selected>Inconnu</option>
+											<option value="male">Male</option>
+											<option value="femelle">Femelle</option>
+										<% } %> 
 									</select>
 									<label for="sex">sexe</label>
 								</div>
@@ -45,6 +95,19 @@
 								<!-- type Input -->
 								<div class="form-floating">
 									<select class="form-select mb-3" id="type" aria-label="select type" name="type" required>
+										<% if (animal.sex == 'male') { %>
+											<option >Inconnu</option>
+											<option value="male" selected>Male</option>
+											<option value="femelle">Femelle</option>
+										<% } else if ((animal.sex == 'female')) { %>
+											<option >Inconnu</option>
+											<option value="male" >Male</option>
+											<option value="femelle" selected>Femelle</option>
+										<% } else { %>
+											<option selected>Inconnu</option>
+											<option value="male">Male</option>
+											<option value="femelle">Femelle</option>
+										<% } %> 
 										<option selected>Inconnu</option>
 										<option value="chien">Chien</option>
 										<option value="chat">Chat</option>
@@ -56,7 +119,7 @@
 								<!-- content Input -->
 								<div class="form-floating mb-3">
 									<textarea class="form-control" id="content" rows="3" placeholder="Petit text de présentation"
-										name="content" required></textarea>
+										name="content" required><%=  animal.content %></textarea>
 									<label for="content" class="form-label">Petit texte de présentation</label>
 								</div>
 
@@ -64,23 +127,29 @@
 								<div class="form-floating">
 									<select class="form-select mb-3" id="sterilized" aria-label="select sterilized"
 										name="sterilized" required>
-										<option selected value="false">Non</option>
-										<option value="true">Oui</option>
+										<% if (animal.sterilized) { %>
+											<option value="false">Non</option>
+											<option selected value="true">Oui</option>
+										<% } else { %>
+											<option selected value="false">Non</option>
+											<option value="true">Oui</option>
+										<% } %>
 									</select>
 									<label for="sterilized">stérilisé</label>
 								</div>
 
 								<!-- puce number input-->
 								<div class="form-floating mb-3">
-									<input class="form-control" id="puceNumber" type="text" placeholder="puceNumber"
-										name="puceNumber" required />
+									<input class="form-control" id="puceNumber" type="text"
+										placeholder="Numéro de puce ou de tatouage" name="puceNumber" required
+										value="<%= animal.puceNumber %> " />
 									<label for="puceNumber">Numéro de puce ou de tatouage</label>
 								</div>
 
 								<!-- birthday input-->
 								<div class="form-floating mb-3">
-									<input class="form-control" id="birthday" type="date" placeholder="birthday"
-										name="birthday" />
+									<input class="form-control" id="birthday" type="date" placeholder="Anniversaire"
+										name="birthday" value="<%= animal.birthday %>" />
 									<label for="birthday">Anniversaire</label>
 								</div>
 
@@ -92,7 +161,6 @@
 							</form>
 							<!-- End of connect form -->
 						</div>
-
 
 					</div>
 					<!-- /.row -->

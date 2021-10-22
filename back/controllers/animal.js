@@ -2,8 +2,8 @@ const Animal = require('../models/animal')
 const fs = require('fs')
 
 exports.create = async (req, res) => {
-	let birthday
-	if (req.body.birthday == "") birthday = "inconu"
+	let birthday = req.body.birthday
+	if (birthday == "") birthday = " inconnu"
 	const animal = new Animal({
 		name: req.body.name,
 		sex: req.body.sex,
@@ -17,7 +17,6 @@ exports.create = async (req, res) => {
 
 	// Check unicity of the puceNumber
 	const doExist = await Animal.findOne({ puceNumber: req.body.puceNumber })
-	console.log('doExist is :', doExist)
 	if (doExist == null) {// Mean it do not exist yet
 		animal.save()
 	} else {
@@ -44,5 +43,6 @@ exports.delete = async (req, res) => {
 }
 
 exports.update =  async (req, res) => {
-	
+	// Tow posibilities: update with an image or without
+
 }

@@ -15,4 +15,4 @@ const animalSchema = mongoose.Schema({
 animalSchema.plugin(uniqueValidator)
 
 module.exports = mongoose.model('Animal', animalSchema)
-//TODO refactor: replace models at the racine to be more logic with front routes
+//TODO refactor: replace models'sdirectory at the racine to be more logic with front routes

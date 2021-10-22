@@ -33,7 +33,7 @@ router.get('/animaux', async (req, res) => {
 })
 
 router.get('/admin/ajout-animal', authAdmin, (req, res) => {
-	res.render('ajout-animal', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
+	res.render('admin-ajout-animal', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
 })
 
 router.get('/admin/modifier-supprimer-animaux', authAdmin, async (req, res) => {
@@ -41,8 +41,10 @@ router.get('/admin/modifier-supprimer-animaux', authAdmin, async (req, res) => {
 	res.render('admin-animaux', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin(), animals })
 })
 
-router.get('/admin/modifier-animal', authAdmin, (req, res) => {
-	
+router.get('/admin/modifier-animal/:id', authAdmin, async (req, res) => {
+	id = req.params.id
+	const animal = await Animal.findById(id)
+	res.render('admin-modifier-animal', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin(), animal })
 })
 
 module.exports = router

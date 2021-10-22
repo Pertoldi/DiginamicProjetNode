@@ -45,7 +45,11 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-1">
-                                                <span>Anniversaire: <%= animals[i].birthday %> </span>
+                                                <% if (animals[i].birthday == "inconnu" ) { %>
+                                                    <span>Anniversaire: <%= animals[i].birthday %></span>
+                                                <% } else { %>
+                                                    <span>Anniversaire: <%= animals[i].birthday.split('-')[2] %>-<%= animals[i].birthday.split('-')[1] %>-<%= animals[i].birthday.split('-')[0] %></span>
+                                                    <% } %> 
                                             </div>
                                             <div class="row">
                                                 <span>Numéro de puce: <%= animals[i].puceNumber %> </span>
@@ -54,7 +58,7 @@
                                     </div>
                                 </div>
 
-                                <% } %>
+                            <% } %>
 
                         </div>
                         <!-- /.row -->
