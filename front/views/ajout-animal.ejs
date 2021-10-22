@@ -17,14 +17,19 @@
 
 						<div class="row">
 
-							<form action="/api/animal/new" method="POST">
+							<form enctype="multipart/form-data" action="/api/animal/new" method="POST">
 
-								<!-- TODO input photo and add multer -->
+								<!-- File Input -->
+								<div class="form-group mb-3">
+									<label for="image">Image de l'animal</label>
+									<input type="file" id="image" accept="image/png, image/jpeg, image/bmp" class="form-control"
+										formControlName="image" name="file" required>
+								</div>
 
 								<!-- name Input -->
 								<div class="form-floating mb-3">
 									<input class="form-control" id="name" type="text" placeholder="name" name="name" required />
-									<label for="name">Name</label>
+									<label for="name">Nom</label>
 								</div>
 
 								<!-- sex Input -->
@@ -34,7 +39,7 @@
 										<option value="male">Male</option>
 										<option value="femelle">Femelle</option>
 									</select>
-									<label for="sex">sex</label>
+									<label for="sex">sexe</label>
 								</div>
 
 								<!-- type Input -->
@@ -50,26 +55,26 @@
 
 								<!-- content Input -->
 								<div class="form-floating mb-3">
-									<textarea class="form-control" id="content" rows="3"
-										placeholder="Petit text de présentation"></textarea>
-									<label for="content" class="form-label">Petit text de présentation</label>
+									<textarea class="form-control" id="content" rows="3" placeholder="Petit text de présentation"
+										name="content" required></textarea>
+									<label for="content" class="form-label">Petit texte de présentation</label>
 								</div>
 
-								<!-- castrated Input -->
+								<!-- sterilized Input -->
 								<div class="form-floating">
-									<select class="form-select mb-3" id="castrated" aria-label="select castrated"
-										name="castrated" required>
+									<select class="form-select mb-3" id="sterilized" aria-label="select sterilized"
+										name="sterilized" required>
 										<option selected value="false">Non</option>
 										<option value="true">Oui</option>
 									</select>
-									<label for="castrated">castré</label>
+									<label for="sterilized">stérilisé</label>
 								</div>
 
 								<!-- puce number input-->
 								<div class="form-floating mb-3">
 									<input class="form-control" id="puceNumber" type="text" placeholder="puceNumber"
 										name="puceNumber" required />
-									<label for="puceNumber">Numéro de puce</label>
+									<label for="puceNumber">Numéro de puce ou de tatouage</label>
 								</div>
 
 								<!-- birthday input-->

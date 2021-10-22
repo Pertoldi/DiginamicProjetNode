@@ -13,3 +13,8 @@
 main {
 	min-height: calc(100vh - 480px);
 }
+
+.card > img {
+	height: 250px;
+	object-fit: cover;
+}

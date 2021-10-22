@@ -14,23 +14,20 @@
 						<li class="nav-item"><a class="nav-link" href="/connect">Se connecter</a></li>
 						<% } %>
 
-						<% if (isAdmin == true) { %>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-									data-bs-toggle="dropdown" aria-expanded="false">Plus</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li><a class="dropdown-item" href="#">All Products</a></li>
-									<li>
-										<hr class="dropdown-divider" />
-									</li>
-									<li><a class="dropdown-item" href="/admin/ajout-animal">Ajouter un animal</a></li>
-									<li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-								</ul>
-							</li>
-						<% } %>
-
-
-
+							<% if (isAdmin==true) { %>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+										data-bs-toggle="dropdown" aria-expanded="false">Plus</a>
+									<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<li><span class="mx-3 text-nowrap">Gestion des animaux</span></li>
+										<li>
+											<hr class="dropdown-divider" />
+										</li>
+										<li><a class="dropdown-item" href="/admin/ajout-animal">Ajouter un animal</a></li>
+										<li><a class="dropdown-item" href="#!">Supprimer/Modifier un animal</a></li>
+									</ul>
+								</li>
+								<% } %>
 
 			</ul>
 		</div>

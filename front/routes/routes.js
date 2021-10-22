@@ -3,6 +3,7 @@ const UserToken = require('../../session/token');
 const jwt = require('jsonwebtoken')
 const router = express.Router();
 const authAdmin = require('../../middlewares/authAdmin');
+const Animal = require('../../back/models/animal')
 
 
 
@@ -26,8 +27,9 @@ router.get('/connect', (req, res) => {
 	res.render('connect', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
 })
 
-router.get('/animaux', (req, res) => {
-	res.render('animaux', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
+router.get('/animaux', async (req, res) => {
+	const animals = await Animal.find()
+	res.render('animaux', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin(), animals})
 })
 
 router.get('/admin/ajout-animal', authAdmin, (req, res) => {

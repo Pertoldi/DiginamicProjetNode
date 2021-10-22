@@ -1,8 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserToken = require('../../session/token');
-
-
 const User = require('../models/user');
 
 exports.create = async (req, res) => {
@@ -25,9 +23,16 @@ exports.create = async (req, res) => {
 					password: await bcrypt.hash(password[0], 10),
 					isAdmin: false
 				})
-				console.log(user);
-				user.save()
-				res.redirect('/')
+
+				const doUserExist = await User.findOne({ email })
+
+				if (doUserExist == null) {// Mean it do not exist yet
+					user.save()
+					res.redirect('/')
+				} else {
+					console.error('email already used !');//TODO un moyen de prévenir le front
+					res.redirect('/connect')
+				}
 
 			}
 		}
@@ -50,9 +55,8 @@ exports.connect = async (req, res) => {
 				{ userId: user._id, isAdmin: user.isAdmin },
 				`${process.env.TOKEN_SECRET}`,
 				{ expiresIn: '6h' })
-				UserToken.setToken(userToken)
-			console.log(UserToken.getToken());
-				res.redirect('/')
+			UserToken.setToken(userToken)
+			res.redirect('/')
 		}
 	}
 }

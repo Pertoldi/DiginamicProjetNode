@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const helmet = require('helmet')
+const path = require('path')
 
 const frontRoutes = require('./front/routes/routes')
 const userRoutes = require('./back/routes/user')
@@ -31,6 +32,7 @@ app.use(helmet())
 
 // Ressources statics
 app.use(express.static('front/public'))
+app.use('/images', express.static(path.join(__dirname, 'images')))
 
 // ejs
 app.set('views', './front/views')
