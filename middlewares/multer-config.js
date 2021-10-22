@@ -10,7 +10,7 @@ const MIME_TYPES = {
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
 		let dir = 'images'
-		if (!fs.existsSync(dir)) {fs.mkdir(dir)} //cette ligne ne marche pas. piste: need to be ("/" + dir) //TODO if I got time
+		if (!fs.existsSync(dir)) {fs.mkdir(dir)} //This line don't work. track: need to be ("/" + dir) //TODO if I got time
 		callback(null, dir)
     },
     filename: (req, file, callback) => {

@@ -1,2 +1,2 @@
 Images will be store on this directory.
-I had to add this file because fs.existsSync don't work on multer-config, and I cannot push an empty directory to git.
+I had to add this file because fs.existsSync || fs.mkdir(dir) don't work on multer-config, and I cannot push an empty directory to git.
