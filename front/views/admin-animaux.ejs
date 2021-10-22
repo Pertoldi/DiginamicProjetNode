@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<%- include('./layouts/head.ejs') %>
+
+	<body>
+		<!-- Navigation-->
+		<%- include('./layouts/nav.ejs') %>
+			<!-- Header-->
+			<%- include('./layouts/header.ejs') %>
+				<main>
+					<!-- Section-->
+					<div class="container">
+
+						<!-- Page Heading -->
+						<h2 class="h1 my-4">Voici nos animaux
+						</h2>
+
+						<div class="row">
+
+							<% for( let i=0; i < animals.length; i++ ) { %>
+								<div class="col-lg-4 col-sm-6 mb-4">
+									<div class="card h-100">
+										<img class="card-img-top" src="<%= animals[i].imageUrl %> " alt="">
+
+										<div class="card-body">
+											<h4 class="card-title">
+												<%= animals[i].name %>
+											</h4>
+
+											<p class="card-text">
+												<%= animals[i].content %>
+											</p>
+											<hr>
+											<div class="row mb-1">
+												<div class="col-6">
+													<span>Sexe: <%= animals[i].sex %> </span>
+												</div>
+												<div class="col-6 text-center">
+													<span>
+														<% if (animals[i].sterilized) { %>
+															stérilisé(e)
+															<% } %>
+													</span>
+												</div>
+											</div>
+											<div class="row mb-1">
+												<span>Anniversaire: <%= animals[i].birthday %> </span>
+											</div>
+											<div class="row mb-3">
+												<span>Numéro de puce: <%= animals[i].puceNumber %> </span>
+											</div>
+											<div class="d-flex justify-content-between">
+												<!-- We can use animals[i]._id or animals[i].puceNumber as parameter -->
+												<button class="btn btn-danger"><a class="text-decoration-none text-light"
+														href="/api/animal/delete/<%= animals[i]._id %>">Supprimer</a></button>
+												<button class="btn btn-success"><a class="text-decoration-none text-light"
+														href="/admin/modifier-animal">Modifier</a></button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<% } %>
+
+						</div>
+						<!-- /.row -->
+
+					</div>
+					<!-- /.container -->
+					</section>
+				</main>
+				<!-- Footer-->
+				<%- include('./layouts/footer.ejs') %>
+					<%- include('./layouts/scripts.ejs') %>
+	</body>
+
+</html>

@@ -31,7 +31,7 @@ const port = normalizePort(process.env.PORT || '3000')
 app.use(helmet())
 
 // Ressources statics
-app.use(express.static('front/public'))
+app.use(express.static(path.join(__dirname, 'front/public'))) //path.join will normalize the path separator character and will return correct path value. Like this it work for windaub and Unix distribution
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
 // ejs

@@ -20,7 +20,7 @@ function fnIsAdmin() {
 }
 
 router.get('/', (req, res) => {
-	res.render('index', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
+	res.render('index', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })// Les parametres servent à la gestion du nav
 })
 
 router.get('/connect', (req, res) => {
@@ -29,11 +29,20 @@ router.get('/connect', (req, res) => {
 
 router.get('/animaux', async (req, res) => {
 	const animals = await Animal.find()
-	res.render('animaux', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin(), animals})
+	res.render('animaux', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin(), animals })
 })
 
 router.get('/admin/ajout-animal', authAdmin, (req, res) => {
 	res.render('ajout-animal', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin() })
+})
+
+router.get('/admin/modifier-supprimer-animaux', authAdmin, async (req, res) => {
+	const animals = await Animal.find()
+	res.render('admin-animaux', { userToken: UserToken.getToken(), isAdmin: fnIsAdmin(), animals })
+})
+
+router.get('/admin/modifier-animal', authAdmin, (req, res) => {
+	
 })
 
 module.exports = router
