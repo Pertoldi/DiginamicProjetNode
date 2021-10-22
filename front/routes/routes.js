@@ -2,7 +2,7 @@ const express = require('express');
 const UserToken = require('../../session/token');
 const jwt = require('jsonwebtoken')
 const router = express.Router();
-const authAdmin = require('../../middlewares/authAdmin');
+const authAdmin = require('../../middlewares/auth-admin');
 const Animal = require('../../back/models/animal')
 
 

@@ -43,7 +43,8 @@
 											</div>
 										</div>
 										<div class="row mb-1">
-											<span>Anniversaire: <%= animal.birthday.split('-')[2] %>-<%= animal.birthday.split('-')[1] %>-<%= animal.birthday.split('-')[0] %></span>
+											<span>Anniversaire: <%= animal.birthday.split('-')[2] %>-<%=
+														animal.birthday.split('-')[1] %>-<%= animal.birthday.split('-')[0] %></span>
 										</div>
 										<div class="row mb-3">
 											<span>Numéro de puce: <%= animal.puceNumber %> </span>
@@ -62,7 +63,7 @@
 								<div class="form-group mb-3">
 									<label for="image">Image de l'animal</label>
 									<input type="file" id="image" accept="image/png, image/jpeg, image/bmp" class="form-control"
-										formControlName="image" name="file" required>
+										formControlName="image" name="file">
 								</div>
 
 								<!-- name Input -->
@@ -75,19 +76,19 @@
 								<!-- sex Input -->
 								<div class="form-floating">
 									<select class="form-select mb-3" id="sex" aria-label="select sex" name="sex" required>
-										<% if (animal.sex == 'male') { %>
-											<option >Inconnu</option>
+										<% if (animal.sex=='male' ) { %>
+											<option>Inconnu</option>
 											<option value="male" selected>Male</option>
 											<option value="femelle">Femelle</option>
-										<% } else if ((animal.sex == 'female')) { %>
-											<option >Inconnu</option>
-											<option value="male" >Male</option>
-											<option value="femelle" selected>Femelle</option>
-										<% } else { %>
-											<option selected>Inconnu</option>
-											<option value="male">Male</option>
-											<option value="femelle">Femelle</option>
-										<% } %> 
+											<% } else if (animal.sex=='femelle' ) { %>
+												<option>Inconnu</option>
+												<option value="male">Male</option>
+												<option value="femelle" selected>Femelle</option>
+												<% } else { %>
+													<option selected>Inconnu</option>
+													<option value="male">Male</option>
+													<option value="femelle">Femelle</option>
+													<% } %>
 									</select>
 									<label for="sex">sexe</label>
 								</div>
@@ -95,23 +96,28 @@
 								<!-- type Input -->
 								<div class="form-floating">
 									<select class="form-select mb-3" id="type" aria-label="select type" name="type" required>
-										<% if (animal.sex == 'male') { %>
-											<option >Inconnu</option>
-											<option value="male" selected>Male</option>
-											<option value="femelle">Femelle</option>
-										<% } else if ((animal.sex == 'female')) { %>
-											<option >Inconnu</option>
-											<option value="male" >Male</option>
-											<option value="femelle" selected>Femelle</option>
-										<% } else { %>
-											<option selected>Inconnu</option>
-											<option value="male">Male</option>
-											<option value="femelle">Femelle</option>
-										<% } %> 
-										<option selected>Inconnu</option>
-										<option value="chien">Chien</option>
-										<option value="chat">Chat</option>
-										<option value="autre">Autre</option>
+										<% if (animal.type=='chien' ) { %>
+											<option>Inconnu</option>
+											<option value="chien" selected>Chien</option>
+											<option value="chat">Chat</option>
+											<option value="autre">Autre</option>
+											<% } else if (animal.type=='chat' ) { %>
+												<option>Inconnu</option>
+												<option value="chien">Chien</option>
+												<option value="chat" selected>Chat</option>
+												<option value="autre">Autre</option>
+												<% } else if (animal.type=='autre' ) { %>
+													<option>Inconnu</option>
+													<option value="chien">Chien</option>
+													<option value="chat">Chat</option>
+													<option value="autre" selected>Autre</option>
+													<% } else { %>
+														<option selected>Inconnu</option>
+														<option value="chien">Chien</option>
+														<option value="chat">Chat</option>
+														<option value="autre">Autre</option>
+														<% } %>
+
 									</select>
 									<label for="type">type</label>
 								</div>
